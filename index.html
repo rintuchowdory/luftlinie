@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luftlinie — Entfernungsrechner</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📏</text></svg>"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="src/css/style.css"/>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel">
+      <div class="brand">
+        <span class="brand-icon">⟵——⟶</span>
+        <h1>LUFTLINIE</h1>
+        <p class="brand-sub">Direkte Entfernung zwischen zwei Orten</p>
+      </div>
+
+      <!-- FROM -->
+      <div class="input-group">
+        <label class="input-label">
+          <span class="dot dot-a">A</span> Von
+        </label>
+        <div class="input-row">
+          <input type="text" id="from-input" placeholder="z.B. Berlin" autocomplete="off"/>
+          <button class="locate-btn" id="locate-from" title="Meinen Standort nutzen">◎</button>
+        </div>
+        <ul class="suggestions" id="from-suggestions"></ul>
+        <div class="coords-display" id="from-coords">—</div>
+      </div>
+
+      <!-- TO -->
+      <div class="input-group">
+        <label class="input-label">
+          <span class="dot dot-b">B</span> Nach
+        </label>
+        <div class="input-row">
+          <input type="text" id="to-input" placeholder="z.B. Tokyo" autocomplete="off"/>
+        </div>
+        <ul class="suggestions" id="to-suggestions"></ul>
+        <div class="coords-display" id="to-coords">—</div>
+      </div>
+
+      <button class="calc-btn" id="calc-btn">ENTFERNUNG BERECHNEN</button>
+      <button class="swap-btn" id="swap-btn" title="Tauschen">⇅ Tauschen</button>
+
+      <!-- RESULT -->
+      <div class="result-box" id="result-box">
+        <div class="result-hidden">
+          <span>Gib zwei Orte ein und berechne die Luftlinie</span>
+        </div>
+      </div>
+
+      <!-- EXTRA INFO -->
+      <div class="info-grid" id="info-grid" style="display:none">
+        <div class="info-cell">
+          <span class="info-label">FLUGZEIT (EST.)</span>
+          <span class="info-value" id="flight-time">—</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-label">FAHRT (AUTO)</span>
+          <span class="info-value" id="drive-time">—</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-label">RICHTUNG</span>
+          <span class="info-value" id="bearing">—</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-label">ZEITZONE DIFF.</span>
+          <span class="info-value" id="tz-diff">—</span>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Powered by OpenStreetMap Nominatim · Keine API-Key nötig
+      </div>
+    </aside>
+
+    <!-- MAP -->
+    <main class="map-container">
+      <div id="map"></div>
+      <div class="map-hint" id="map-hint">Klicke auf die Karte, um Punkte zu setzen</div>
+    </main>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="src/js/app.js"></script>
+</body>
+</html>
